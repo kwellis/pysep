@@ -27,7 +27,7 @@ class SepMech:
         self.lss = lss
 
     def __repr__(self) -> str:
-        return f"\nVessel ID: {self.vid} feet and Lss: {self.lss} feet\n"
+        return f"\nType: {self.__class__.__name__}, Vessel ID: {self.vid} feet, Seam-Seam Length: {self.lss} feet\n"
 
     def shell_thick(self, mawp: float, sv: float = 20000, eff: float = 1, corr: float = 0.125) -> float:
         """Separator Shell Thickness

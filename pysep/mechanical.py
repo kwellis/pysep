@@ -101,20 +101,15 @@ def vessel_bare_weight(vid: float, lss: float, thk: float, rho_metal: float = 49
 
 if __name__ == "__main__":
 
-    thk = sep_shell_thick(10.5, 900)
-    print(f"Vessel Thickness is {round(thk,2)} inches")
-
     fpad_vid = 126 / 12
     fpad_lss = 40
     fpad_thk = 2.39  # inches
 
+    fpad_mawp = 700  # psig
+    calc_thk = sep_shell_thick(fpad_vid, fpad_mawp)
+
+    print(f"F-Pad Calc Thickness {round(calc_thk, 2)} inches vs. Actual Thickness {fpad_thk} inches")
+
     fpad_bare = vessel_bare_weight(fpad_vid, fpad_lss, fpad_thk)
 
     print(f"F-Pad Bare Vessel Weight: {round(fpad_bare, 0)} lbm")
-
-    ben_vid = 150.376 / 12
-    ben_lss = 10
-    ben_thk = 2.812
-
-    ben_bare = vessel_bare_weight(ben_vid, ben_lss, ben_thk)
-    print(f"Ben Vessel Weight: {round(ben_bare, 0)} lbm")
