@@ -56,5 +56,5 @@ vssl_wgt = bare_wgt + xtra_wgt
 
 print(f"Primary MAWP: {mawp} psig, Wall Thick: {round(wall_thk, 2)} inches, Weight: {round(vssl_wgt/2000, 2)} tons\n")
 
-coal_len = primary.coal_plate_length(150)
+coal_len = primary.coal_plate_length(50)
 print(f"Length of the Coalescing Plate is {round(coal_len, 2)} ft")

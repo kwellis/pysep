@@ -274,7 +274,7 @@ class SepThreePhase(SepMech):
         Returns:
             plen (float): Plate Length, feet
         """
-        dd = drp.micron_to_feet(150)
+        dd = drp.micron_to_feet(dm)
         vt_oil = drp.velocity_terminal(
             dd,
             self.oil_props["density"],
