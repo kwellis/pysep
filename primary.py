@@ -1,5 +1,11 @@
 import numpy as np
 
+from pysep.drops import (
+    centipoise_to_lbm,
+    coal_plate_length,
+    micron_to_feet,
+    velocity_terminal,
+)
 from pysep.separator import SepThreePhase
 
 oil_props = {
@@ -13,7 +19,7 @@ oil_props = {
 
 wat_props = {
     "mass_flow": 1.482e6,  # lbm/hr, 100 MBWPD
-    "density": 60.43,  # lbm/ft3, 350 PSIG and 95 deg F
+    "density": 60.793,  # lbm/ft3, 350 PSIG and 150 deg F, is this accurate?
     "viscosity": 0.75,  # centipoise
     "drop_io": 500,  # micron, smallest droplet to be removed in the process
     "drop_iw": np.nan,
@@ -49,3 +55,12 @@ xtra_wgt = 25000  # lbm, weight of vessel internals and nozzles
 vssl_wgt = bare_wgt + xtra_wgt
 
 print(f"Primary MAWP: {mawp} psig, Wall Thick: {round(wall_thk, 2)} inches, Weight: {round(vssl_wgt/2000, 2)} tons\n")
+
+dd = micron_to_feet(150)
+vt_oil = velocity_terminal(
+    dd, oil_props["density"], wat_props["density"], centipoise_to_lbm(wat_props["viscosity"]), 32.174
+)
+
+coal_len = coal_plate_length(vt_oil, primary.vx_wat)
+
+print(f"Length of the Coalescing Plate is {round(coal_len, 2)} ft")

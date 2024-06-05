@@ -179,8 +179,58 @@ def droplet_diameter(vt: float, rho_drop: float, rho_fld: float, mu_fld: float, 
         cd = drag_coeff(re)
         dd_new = diameter_drop(vt, cd, rho_drop, rho_fld, g)
 
-        if abs(dd_new - dd) < 1e-9:  # how small since we are dealing with tiny numbers in feet...?
+        if abs(dd_new - dd) < 1e-7:  # how small since we are dealing with tiny numbers in feet...?
             break
         dd = dd_new
 
     return dd_new  # final dd iteration value
+
+
+def coal_plate_length(vt: float, vx: float, pgap: float = 0.75, angl: float = 45, pf: float = 0.6) -> float:
+    """Coalescing Plate Length
+
+    Calculate the recommended length of a coalescing plates. Follows methodology from Stewart Emulsion book
+    equation 3.18a. When you do the unit conversions, it appears that stewart add an addition 60% onto the
+    length of the plate for the conversion factor to come out correctly. The equation is basically looking
+    how much length is required to get a droplet of oil across the plates at a certain angle.
+
+    Args:
+        vt (float): Terminal Droplet Velocity, ft/s
+        vx (float): Horizontal Fluid Velocity, ft/s
+        pgap (float): Gap Between Coalescing Plates, inches
+        angl (float): Angle of Coalescing Plates off Horizontal, degrees
+        pf (float): Performance Factor, adds fraction of extra length
+
+    Returns:
+        plen (float): Plate Length, feet
+    """
+    max_angl = 70
+    if angl > max_angl:
+        raise ValueError(f"Angle off Horizontal must be less than {max_angl} degrees")
+    plen = (vx / vt) * (pgap / 12) * (1 / math.cos(math.radians(angl))) * (1 + pf)
+    return plen
+
+
+def coal_plate_terminal(plen: float, vx: float, pgap: float = 0.75, angl: float = 45, pf: float = 0.6) -> float:
+    """Coalescing Plate Terminal Velocity
+
+    Calculate the minimum terminal velocity inside coalescing plates. Follows methodology from Stewart Emulsion book
+    equation 3.18a. When you do the unit conversions, it appears that stewart add an addition 60% onto the
+    length of the plate for the conversion factor to come out correctly. The equation is basically looking
+    how much length is required to get a droplet of oil across the plates at a certain angle.
+
+    Args:
+        plen (float): Plate Length, feet
+        vx (float): Horizontal Fluid Velocity, ft/s
+        pgap (float): Gap Between Coalescing Plates, inches
+        angl (float): Angle of Coalescing Plates off Horizontal, degrees
+        pf (float): Performance Factor, adds fraction of extra length
+
+    Returns:
+        vt (float): Terminal Droplet Velocity, ft/s
+    """
+    max_angl = 70
+    if angl > max_angl:
+        raise ValueError(f"Angle off Horizontal must be less than {max_angl} degrees")
+    vt = (vx / plen) * (pgap / 12) * (1 / math.cos(math.radians(angl))) * (1 + pf)
+    return vt

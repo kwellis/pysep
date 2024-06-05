@@ -107,7 +107,6 @@ if __name__ == "__main__":
 
     fpad_mawp = 700  # psig
     calc_thk = sep_shell_thick(fpad_vid, fpad_mawp)
-
     print(f"F-Pad Calc Thickness {round(calc_thk, 2)} inches vs. Actual Thickness {fpad_thk} inches")
 
     fpad_bare = vessel_bare_weight(fpad_vid, fpad_lss, fpad_thk)
