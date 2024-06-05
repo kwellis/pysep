@@ -161,7 +161,7 @@ class SepThreePhase(SepMech):
         leff: float,
         hoil: float,
         hwat: float,
-        oil_props: dict,
+        oil_props: dict,  # make these classes?
         wat_props: dict,
         gas_props: dict,
     ) -> None:
@@ -257,3 +257,30 @@ class SepThreePhase(SepMech):
             else:
                 pout += nformat.format(label, unit, oil, wat, gas)
         print(pout)
+
+    def coal_plate_length(self, dm: float, pgap: float = 0.75, angl: float = 45, pf: float = 0.6) -> float:
+        """Coalescing Plate Length
+
+        Calculates the length of coalescing plates required. Assumes the plates will be totally
+        submerged inside water. Only looks at pulling droplets of oil out from water. Does not
+        look at pulling droplets of water out from oil.
+
+        Args:
+            dm (float): Droplet Diameter, microns
+            pgap (float): Gap Between Coalescing Plates, inches
+            angl (float): Angle of Coalescing Plates off Horizontal, degrees
+            pf (float): Performance Factor, adds fraction of extra length
+
+        Returns:
+            plen (float): Plate Length, feet
+        """
+        dd = drp.micron_to_feet(150)
+        vt_oil = drp.velocity_terminal(
+            dd,
+            self.oil_props["density"],
+            self.wat_props["density"],
+            drp.centipoise_to_lbm(self.wat_props["viscosity"]),
+            32.174,
+        )
+        coal_len = drp.coal_plate_length(vt_oil, self.vx_wat)
+        return coal_len

@@ -56,11 +56,5 @@ vssl_wgt = bare_wgt + xtra_wgt
 
 print(f"Primary MAWP: {mawp} psig, Wall Thick: {round(wall_thk, 2)} inches, Weight: {round(vssl_wgt/2000, 2)} tons\n")
 
-dd = micron_to_feet(150)
-vt_oil = velocity_terminal(
-    dd, oil_props["density"], wat_props["density"], centipoise_to_lbm(wat_props["viscosity"]), 32.174
-)
-
-coal_len = coal_plate_length(vt_oil, primary.vx_wat)
-
+coal_len = primary.coal_plate_length(150)
 print(f"Length of the Coalescing Plate is {round(coal_len, 2)} ft")
