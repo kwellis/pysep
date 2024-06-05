@@ -282,9 +282,10 @@ class SepThreePhase(SepMech):
             drp.centipoise_to_lbm(self.wat_props["viscosity"]),
             32.174,
         )
-        coal_len = drp.coal_plate_length(vt_oil, self.vx_wat)
+        coal_len = drp.coal_plate_length(vt_oil, self.vx_wat, pgap=pgap, angl=angl, pf=pf)
 
         if coal_len > self.leff:
             print(f"Plates are too long: {round(coal_len, 2)} ft vs Leff {round(self.leff)} ft")
-            return np.nan
+            coal_len = np.nan
+
         return coal_len
