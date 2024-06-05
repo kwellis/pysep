@@ -283,4 +283,8 @@ class SepThreePhase(SepMech):
             32.174,
         )
         coal_len = drp.coal_plate_length(vt_oil, self.vx_wat)
+
+        if coal_len > self.leff:
+            print(f"Plates are too long: {round(coal_len, 2)} ft vs Leff {round(self.leff)} ft")
+            return np.nan
         return coal_len
