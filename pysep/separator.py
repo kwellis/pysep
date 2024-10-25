@@ -27,7 +27,7 @@ class SepMech:
         self.lss = lss
 
     def __repr__(self) -> str:
-        return f"\nType: {self.__class__.__name__}, Vessel ID: {self.vid} feet, Seam-Seam Length: {self.lss} feet\n"
+        return f"\nType: {self.__class__.__name__}, Vessel ID: {self.vid: .2f} ft., Seam-Seam Length: {self.lss: .2f} ft.\n"  # noqa: E501
 
     def shell_thick(self, mawp: float, sv: float = 20000, eff: float = 1, corr: float = 0.125) -> float:
         """Separator Shell Thickness
@@ -239,16 +239,16 @@ class SepThreePhase(SepMech):
     def results(self) -> None:
         """Show Results of the Two Phase Separator"""
 
-        labels = ["X-Area", "Velocity", "Retention", "Reynolds", "Min_Drop"]
-        units = ["ft2", "ft/s", "min", "none", "µm"]
+        labels = ["X-Area", "Velocity", "Retention", "Reynolds", "Oil Min Drop", "Wat Min Drop", "Gas Min Drop"]
+        units = ["ft2", "ft/s", "min", "none", "µm", "µm", "µm"]
 
-        oil_results = [self.aoil, self.vx_oil, self.ret_oil, self.re_oil, self.drop_wio]
-        wat_results = [self.awat, self.vx_wat, self.ret_wat, self.re_wat, self.drop_oiw]
-        gas_results = [self.agas, self.vx_gas, self.ret_gas, self.re_gas, self.drop_oig]
+        oil_results = [self.aoil, self.vx_oil, self.ret_oil, self.re_oil, np.nan, self.drop_wio, np.nan]
+        wat_results = [self.awat, self.vx_wat, self.ret_wat, self.re_wat, self.drop_oiw, np.nan, np.nan]
+        gas_results = [self.agas, self.vx_gas, self.ret_gas, self.re_gas, self.drop_oig, np.nan, np.nan]
 
-        sformat = "{:>9} | {:>8} | {:>8} | {:>8} | {:>8} \n"  # string format
-        nformat = "{:>9} | {:>8} | {:>8.2f} | {:>8.2f} | {:>8.2f} \n"  # number format
-        re_format = "{:>9} | {:>8} | {:>8.0f} | {:>8.0f} | {:>8.0f} \n"  # reynolds format
+        sformat = "{:>12} | {:>5} | {:>8} | {:>8} | {:>8} \n"  # string format
+        nformat = "{:>12} | {:>5} | {:>8.2f} | {:>8.2f} | {:>8.2f} \n"  # number format
+        re_format = "{:>12} | {:>5} | {:>8.0f} | {:>8.0f} | {:>8.0f} \n"  # reynolds format
         spc = 54 * "-" + "\n"  # spacing
         pout = sformat.format("Tags", "Units", "Oil", "Water", "Vapor") + spc
         for label, unit, oil, wat, gas in zip(labels, units, oil_results, wat_results, gas_results):
