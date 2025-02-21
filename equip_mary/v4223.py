@@ -36,7 +36,7 @@ gas_props = {
 vid = 84 / 12  # feet, this is probably the OD, not the ID
 lss = 192 / 12  # feet
 leff = 0.8 * lss
-hliq = 0.5 * vid  # half full with gas
+hliq = 0.55 * vid  # half full with gas
 hgas = vid - hliq
 
 liq_props = liquid_props(oil_props, wat_props)
