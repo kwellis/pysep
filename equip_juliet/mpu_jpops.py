@@ -43,8 +43,11 @@ vid = vod - 2 * wall_thk  # feet, vessel inner diameter
 lss = 40  # feet
 leff = 0.8 * lss
 
-hoil = (96 + 6) / 12
-hwat = 96 / 12
+# top of the weir is at 96
+weir = 96  # top of the weir
+nil = 84  # normal interface liquid level, weird since some water needs to spill over
+hoil = (weir + 2) / 12
+hwat = nil / 12  # what AMACS used for F-Pad
 hgas = vid - hoil
 
 primary = SepThreePhase(vid, lss, leff, hoil, hwat, oil_props, wat_props, gas_props)

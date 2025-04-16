@@ -14,7 +14,7 @@ oil_props = {
 }
 
 wat_props = {
-    "mass_flow": 7.41e5,  # lbm/hr, 50 MBWPD
+    "mass_flow": 7.41e5 * 6 / 5,  # lbm/hr, 50 MBWPD
     "density": 62.46,  # lbm/ft3, 350 PSIG and 150 deg F, is this accurate?
     "viscosity": 0.75,  # centipoise
     "drop_io": 500,  # micron, smallest droplet to be removed in the process
@@ -32,8 +32,8 @@ gas_props = {
 }
 
 # primary dimensions
-vid = 78.74 / 12  # feet, this the ID, 9.5
-lss = 480 / 12  # feet, actually 45 (for MEG, for similiar rates, we were looking at 45 feet...)
+vid = 78.74 / 12  # feet
+lss = 480 / 12  # feet
 leff = 0.8 * lss
 liq_frac = (78.74 / 2 + 23.556) / 78.74
 print(f"Oil Height is {liq_frac:.3f}% of Total Height")
@@ -45,7 +45,7 @@ primary = SepThreePhase(vid, lss, leff, hoil, hwat, oil_props, wat_props, gas_pr
 print(primary)
 primary.results()
 
-mawp = 100  # psig
+mawp = 1075  # psig
 wall_thk = primary.shell_thick(mawp)
 bare_wgt = primary.weight_bare(wall_thk)
 xtra_wgt = 25000  # lbm, weight of vessel internals and nozzles

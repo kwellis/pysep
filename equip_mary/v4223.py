@@ -15,7 +15,7 @@ oil_props = {
 }
 
 wat_props = {
-    "mass_flow": 7.41e5,  # lbm/hr, 50 MBWPD
+    "mass_flow": 7.41e5 * 6 / 5,  # lbm/hr, 50 MBWPD
     "density": 62.46,  # lbm/ft3, 350 PSIG and 150 deg F, is this accurate?
     "viscosity": 0.75,  # centipoise
     "drop_io": 500,  # micron, smallest droplet to be removed in the process
@@ -24,7 +24,7 @@ wat_props = {
 }
 
 gas_props = {
-    "mass_flow": 3888,  # lbm/hr, 2 MMSCFD
+    "mass_flow": 3888 * 3 / 2,  # lbm/hr, 2 MMSCFD
     "density": 0.9444,  # lbm/ft3, 350 psig
     "viscosity": 1.327e-2,  # centipoise
     "drop_io": 140,  # micron, smallest droplet to be removed in the process, 140 can be caught by demister

@@ -55,3 +55,4 @@ print(f"Length of the Coalescing Plate is {round(coal_len, 2)} ft")
 
 
 # note, the V-5411 is around 10' in ID and 22' in length
+# how does this compare to the various POP vessels?
