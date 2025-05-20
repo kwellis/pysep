@@ -22,13 +22,13 @@ def volm_mass_conversion(volm_flow: float, units: str, rho_fld: float) -> float:
 
 
 if __name__ == "__main__":
-    oil_volm = 10000  # bpd
+    oil_volm = 50000  # bpd
     oil_unit = "bpd"
     oil_rho = 58.74  # lbm/ft3
     oil_mass = volm_mass_conversion(oil_volm, oil_unit, oil_rho)
     print(f"\nOil Mass Flow is {oil_mass:.3e} lbm/ft3")
 
-    water_volm = 11000  # bpd
+    water_volm = 110000  # bpd
     water_unit = "bpd"
     water_rho = 62.4  # lbm/ft3
     water_mass = volm_mass_conversion(water_volm, water_unit, water_rho)

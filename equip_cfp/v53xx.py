@@ -2,8 +2,10 @@ import numpy as np
 
 from pysep.separator import SepThreePhase
 
+"""New Theoretical Vessel"""
+
 oil_props = {
-    "mass_flow": 6.871e05,  # lbm/hr, 50 MBOPD
+    "mass_flow": 6.871e05 / 2,  # lbm/hr, 50 MBOPD
     "density": 58.74,  # lbm/ft3
     "viscosity": 52,  # centipoise
     "drop_io": np.nan,
@@ -12,7 +14,7 @@ oil_props = {
 }
 
 wat_props = {
-    "mass_flow": 1.606e06,  # lbm/hr, 110 MBWPD
+    "mass_flow": 1.606e06 / 2,  # lbm/hr, 110 MBWPD
     "density": 62.46,  # lbm/ft3
     "viscosity": 0.75,  # centipoise
     "drop_io": 500,  # micron, smallest droplet to be removed in the process
@@ -21,7 +23,7 @@ wat_props = {
 }
 
 gas_props = {
-    "mass_flow": 6.917e04,  # lbm/hr, 40 MMSCFD
+    "mass_flow": 6.917e04 / 2,  # lbm/hr, 40 MMSCFD
     "density": 0.39,  # lbm/ft3 (what pressure and temperature?)
     "viscosity": 1.327e-2,  # centipoise
     "drop_io": 140,  # micron, smallest droplet to be removed in the process, 140 can be caught by demister
@@ -30,12 +32,12 @@ gas_props = {
 }
 
 # primary dimensions
-vid = 12  # feet
-lss = 80  # feet, actually 45 (for MEG, for similiar rates, we were looking at 45 feet...)
+vid = 16  # feet
+lss = 80  # feet
 leff = 0.8 * lss
 # liq_frac = 0.8
-hoil = 7.5  # hhll is at seven feet
-hwat = 6  # right at the "weir" height
+hoil = 9  # hhll is at seven feet
+hwat = 8  # right at the "weir" height
 hgas = vid - hoil
 
 primary = SepThreePhase(vid, lss, leff, hoil, hwat, oil_props, wat_props, gas_props)
