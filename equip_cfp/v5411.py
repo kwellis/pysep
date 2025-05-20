@@ -30,12 +30,12 @@ gas_props = {
 }
 
 # primary dimensions
-vid = 8  # feet
-lss = 30  # feet
+vid = 10  # feet
+lss = 22  # feet
 leff = 0.8 * lss
 # liq_frac = 0.8
-hoil = 5.25  # hhll is at seven feet
-hwat = 5  # right at the "weir" height
+hoil = 8  # hhll is at seven feet
+hwat = 7.8  # right at the "weir" height
 hgas = vid - hoil
 
 primary = SepThreePhase(vid, lss, leff, hoil, hwat, oil_props, wat_props, gas_props)

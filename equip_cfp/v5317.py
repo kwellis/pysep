@@ -31,7 +31,7 @@ gas_props = {
 
 # primary dimensions
 vid = 12  # feet
-lss = 80  # feet, actually 45 (for MEG, for similiar rates, we were looking at 45 feet...)
+lss = 80  # feet
 leff = 0.8 * lss
 # liq_frac = 0.8
 hoil = 7.5  # hhll is at seven feet
