@@ -12,7 +12,7 @@ oil_props = {
 }
 
 wat_props = {
-    "mass_flow": 5.840e05 / 2,  # lbm/hr, 40 MBWPD
+    "mass_flow": 3 * 5.840e05 / 4,  # lbm/hr, 40 MBWPD
     "density": 62.46,  # lbm/ft3
     "viscosity": 0.75,  # centipoise
     "drop_io": 500,  # micron, smallest droplet to be removed in the process

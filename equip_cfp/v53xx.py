@@ -36,7 +36,7 @@ vid = 16  # feet
 lss = 80  # feet
 leff = 0.8 * lss
 # liq_frac = 0.8
-hoil = 9  # hhll is at seven feet
+hoil = 9.5  # feet, this is the sweet spot, any increase in height increase travel distance
 hwat = 8  # right at the "weir" height
 hgas = vid - hoil
 

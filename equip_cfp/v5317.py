@@ -34,7 +34,7 @@ vid = 12  # feet
 lss = 80  # feet
 leff = 0.8 * lss
 # liq_frac = 0.8
-hoil = 7.5  # hhll is at seven feet
+hoil = 7.5  # hhll is at eight feet
 hwat = 6  # right at the "weir" height
 hgas = vid - hoil
 
@@ -50,5 +50,5 @@ vssl_wgt = bare_wgt + xtra_wgt
 
 print(f"Primary MAWP: {mawp} psig, Wall Thick: {round(wall_thk, 2)} inches, Weight: {round(vssl_wgt/2000, 2)} tons\n")
 
-coal_len = primary.coal_plate_length(100, pf=0.0)
+coal_len = primary.coal_plate_length(150, pf=0.0)
 print(f"Length of the Coalescing Plate is {round(coal_len, 2)} ft")
